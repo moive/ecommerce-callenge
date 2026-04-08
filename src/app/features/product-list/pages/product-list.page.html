@@ -1,0 +1,12 @@
+<h1>Productos</h1>
+@if (loading()) {
+  <div>Cargando...</div>
+}
+
+@if (!loading()) {
+  <div class="grid">
+    @for (product of products(); track $index) {
+      <app-product-card [product]="product" (add)="addProduct($event)" />
+    }
+  </div>
+}
