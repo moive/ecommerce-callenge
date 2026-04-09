@@ -1,0 +1,234 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-main">
+    <div class="footer-main__container">
+      <div class="footer-links">
+        <section class="footer-links__col" aria-labelledby="footer-col-1">
+          <button
+            class="footer-links__title"
+            id="footer-col-1"
+            type="button"
+            [attr.aria-expanded]="openCol === 1"
+            aria-controls="footer-col-1-list"
+            (click)="toggleCol(1)"
+          >
+            Title
+            <svg
+              class="footer-links__chevron"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <ul
+            class="footer-links__list"
+            id="footer-col-1-list"
+            role="list"
+            [class.footer-links__list--open]="openCol === 1"
+          >
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+          </ul>
+        </section>
+
+        <section class="footer-links__col" aria-labelledby="footer-col-2">
+          <button
+            class="footer-links__title"
+            id="footer-col-2"
+            type="button"
+            [attr.aria-expanded]="openCol === 2"
+            aria-controls="footer-col-2-list"
+            (click)="toggleCol(2)"
+          >
+            Title
+            <svg
+              class="footer-links__chevron"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <ul
+            class="footer-links__list"
+            id="footer-col-2-list"
+            role="list"
+            [class.footer-links__list--open]="openCol === 2"
+          >
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+          </ul>
+        </section>
+
+        <section class="footer-links__col" aria-labelledby="footer-col-3">
+          <button
+            class="footer-links__title"
+            id="footer-col-3"
+            type="button"
+            [attr.aria-expanded]="openCol === 3"
+            aria-controls="footer-col-3-list"
+            (click)="toggleCol(3)"
+          >
+            Title
+            <svg
+              class="footer-links__chevron"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <ul
+            class="footer-links__list"
+            id="footer-col-3-list"
+            role="list"
+            [class.footer-links__list--open]="openCol === 3"
+          >
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+            <li><a class="footer-links__item" href="#">Content</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <aside
+        class="footer-aside"
+        aria-label="Redes sociales, libro de reclamaciones y descarga de app"
+      >
+        <section class="footer-aside__social" aria-labelledby="footer-social-title">
+          <h3 class="footer-aside__title" id="footer-social-title">Síguenos en</h3>
+          <div class="footer-aside__social-icons">
+            <a
+              href="https://facebook.com"
+              class="footer-aside__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Síguenos en Facebook"
+            >
+              <img
+                src="assets/images/facebook.svg"
+                alt="Facebook"
+                width="16"
+                height="16"
+                loading="lazy"
+              />
+            </a>
+            <a
+              href="https://instagram.com"
+              class="footer-aside__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Síguenos en Instagram"
+            >
+              <img
+                src="assets/images/instagram.svg"
+                alt="Instagram"
+                width="16"
+                height="16"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="footer-aside__complaints" aria-labelledby="footer-complaints-title">
+          <h3 class="footer-aside__title" id="footer-complaints-title">Libro de reclamaciones</h3>
+          <a
+            href="/libro-de-reclamaciones"
+            class="footer-aside__complaints-link"
+            aria-label="Acceder al Libro de reclamaciones"
+          >
+            <img
+              src="assets/images/book.png"
+              alt="Libro de Reclamaciones"
+              width="67"
+              height="39"
+              loading="lazy"
+            />
+          </a>
+        </section>
+
+        <section class="footer-aside__apps" aria-labelledby="footer-apps-title">
+          <h3 class="footer-aside__title" id="footer-apps-title">Descarga nuestra app en</h3>
+          <div class="footer-aside__app-btns">
+            <a
+              href="https://play.google.com"
+              class="footer-aside__app-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Descargar en Google Play"
+            >
+              <img
+                src="assets/images/SocialMediaGoogle.svg"
+                alt="Google Play"
+                width="24"
+                height="24"
+                loading="lazy"
+              />
+              <span>Google Play</span>
+            </a>
+            <a
+              href="https://apps.apple.com"
+              class="footer-aside__app-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Descargar en App Store"
+            >
+              <img
+                src="assets/images/SocialMediaApple.svg"
+                alt="App Store"
+                width="24"
+                height="24"
+                loading="lazy"
+              />
+              <span>App Store</span>
+            </a>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom__container">
+      <small class="footer-bottom__copy">
+        Copyright &copy; Inkafarma 2026 Todos los derechos reservados
+      </small>
+    </div>
+  </div>
+</footer>
