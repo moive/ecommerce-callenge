@@ -1,0 +1,16 @@
+$color-gray: #354159;
+$color-bg-body: #f4f5f8;
+
+body {
+  background: $color-bg-body;
+  color: $color-gray;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
