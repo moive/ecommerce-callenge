@@ -1,0 +1,145 @@
+<header class="site-header" role="banner">
+  <div class="announcement-bar" role="note" aria-label="Anuncio">
+    <p class="announcement-bar__text">
+      Es un hecho establecido hace demasiado tiempo que un lector.
+    </p>
+  </div>
+
+  <div class="main-header">
+    <div class="main-header__container">
+      <button
+        class="main-header__menu-btn"
+        type="button"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen"
+      >
+        <span class="main-header__menu-btn-bar"></span>
+        <span class="main-header__menu-btn-bar"></span>
+        <span class="main-header__menu-btn-bar"></span>
+      </button>
+
+      <a class="main-header__logo" href="/" aria-label="Inkafarma - Ir al inicio">
+        <img
+          class="desktop"
+          src="assets/images/inkafarma-logo.svg"
+          alt="Inkafarma"
+          width="150"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <img
+          class="mobile"
+          src="assets/images/iso-inkafarma.svg"
+          alt="Inkafarma"
+          width="21"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </a>
+
+      <search class="main-header__search" role="search">
+        <input
+          id="search-input"
+          class="main-header__search-input"
+          type="search"
+          name="q"
+          placeholder="Busca una marca o producto"
+          autocomplete="off"
+          aria-label="Buscar marca o producto"
+        />
+        <button class="main-header__search-btn" type="submit" aria-label="Realizar búsqueda">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+      </search>
+
+      <a class="main-header__cart" href="/carrito" aria-label="Ver carrito de compras, 0 productos">
+        <img
+          src="assets/images/cart-icon.svg"
+          alt="Carrito de compras"
+          width="20"
+          height="20"
+          loading="lazy"
+        />
+        <span class="main-header__cart-count" aria-live="polite">0</span>
+      </a>
+    </div>
+  </div>
+
+  <nav
+    id="main-nav"
+    class="main-nav"
+    [class.main-nav--open]="menuOpen"
+    aria-label="Navegación principal"
+  >
+    <div class="main-nav__overlay" (click)="toggleMenu()" aria-hidden="true"></div>
+
+    <div class="main-nav__panel">
+      <button
+        class="main-nav__close-btn"
+        type="button"
+        aria-label="Cerrar menú"
+        (click)="toggleMenu()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+      <ul class="main-nav__list" role="list">
+        <li class="main-nav__item">
+          <a class="main-nav__link" href="/dermocosmetica">Dermocosmética</a>
+        </li>
+        <li class="main-nav__item">
+          <a class="main-nav__link" href="/farmacia">Farmacia</a>
+        </li>
+        <li class="main-nav__item">
+          <a class="main-nav__link" href="/bienestar">Bienestar</a>
+        </li>
+        <li class="main-nav__item">
+          <a class="main-nav__link" href="/infantil">Infantil</a>
+        </li>
+        <li class="main-nav__item">
+          <a class="main-nav__link" href="/fotoproteccion">Fotoprotección</a>
+        </li>
+        <li class="main-nav__item">
+          <a class="main-nav__link" href="/inkaclub">Inkaclub</a>
+        </li>
+        <li class="main-nav__item">
+          <a class="main-nav__link" href="/tienda-24hrs">Tienda 24 hrs.</a>
+        </li>
+        <li class="main-nav__item">
+          <a class="main-nav__link" href="/catalogo">Catálogo</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
