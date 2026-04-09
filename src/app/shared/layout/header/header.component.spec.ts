@@ -16,7 +16,7 @@ describe('HeaderComponent', () => {
     await fixture.whenStable();
   });
 
-  it('should create', () => {
+  it('should create 👍', () => {
     expect(component).toBeTruthy();
   });
 });
