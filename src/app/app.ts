@@ -4,10 +4,17 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { CartModalComponent, RemoveItemEvent } from './shared/ui/cart-modal/cart-modal.component';
 import { CartService } from './core/services/cart.service';
+import { BreadcrumbComponent } from './shared/ui/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, CartModalComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+    CartModalComponent,
+    BreadcrumbComponent,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

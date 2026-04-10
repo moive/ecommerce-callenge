@@ -1,0 +1,61 @@
+// ─── Tokens ───────────────────────────────────────────────────────────────────
+$color-blue-primary: #1a8ff1;
+$color-blue-dark: #0056b3;
+$color-text-muted: #7a8499;
+
+$font-base: 'Inter', sans-serif;
+$transition: 0.2s ease;
+
+// ─── Breadcrumb ───────────────────────────────────────────────────────────────
+.breadcrumb {
+  width: 100%;
+  font-family: $font-base;
+  padding: 24px 24px 30px;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__link {
+    font-size: 13px;
+    font-weight: 500;
+    color: $color-blue-primary;
+    text-decoration: none;
+    transition: color $transition;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-blue-dark;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-blue-primary;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+
+  &__separator {
+    font-size: 13px;
+    color: $color-text-muted;
+    user-select: none;
+  }
+
+  &__current {
+    font-size: 13px;
+    font-weight: 500;
+    color: $color-text-muted;
+  }
+}
