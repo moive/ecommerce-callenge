@@ -1,43 +1,125 @@
-<article class="product-card">
-  <!-- HEADER -->
-  <div class="card-header">
-    <span class="unit-badge">80 unidades</span>
-    <img [ngSrc]="product()!.image" width="200" height="200" [alt]="product()?.name" />
-  </div>
+<article class="product-card" [attr.aria-label]="product().name">
+  <!-- Badge superior -->
+  @if (product().badge) {
+    <div class="product-card__top-badge">
+      <span class="product-card__badge-qty"> 80<br /><small>unidades</small> </span>
+      <div class="product-card__badge-info">
+        <span class="product-card__badge-title">{{ product().badge }}</span>
+        <span class="product-card__badge-sub">Cuidado 4 en 1</span>
+      </div>
+    </div>
+  }
 
-  <!-- BODY -->
-  <div class="card-body">
-    @if (product()?.category) {
-      <p class="category">{{ product()?.category }}</p>
+  <!-- Imagen -->
+  <a class="product-card__img-wrap" [routerLink]="['/product', product().id]">
+    <img
+      class="product-card__img"
+      [src]="product().image"
+      [alt]="product().name"
+      width="280"
+      height="280"
+      loading="lazy"
+    />
+  </a>
+
+  <!-- Contenido -->
+  <div class="product-card__body">
+    <!-- Unit label -->
+    @if (product().unitLabel) {
+      <span class="product-card__unit">{{ product().unitLabel }}</span>
     }
 
-    <h3 class="title">{{ product()?.name }}</h3>
+    <!-- Nombre -->
+    <h3 class="product-card__name">
+      <a class="product-card__name-link" [routerLink]="['/product', product().id]">
+        {{ product().name }}
+      </a>
+    </h3>
 
-    <div class="tags">
-      @if (product()?.badge) {
-        <span class="tag primary">{{ product()?.badge }}</span>
+    <!-- Tags -->
+    <div class="product-card__tags">
+      @if (product().tags?.includes('recomendado')) {
+        <span class="product-card__tag product-card__tag--recommended">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 18a8 8 0 110-16 8 8 0 010 16zm-1-13h2v6h-2zm0 8h2v2h-2z"
+            />
+          </svg>
+          Te puede interesar
+        </span>
       }
-
-      @if (product()?.brand) {
-        <span class="tag secondary">{{ product()?.brand }}</span>
+      @if (product().brand) {
+        <span class="product-card__tag product-card__tag--brand">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+          </svg>
+          {{ product().brand }}
+        </span>
       }
     </div>
 
-    <!-- precios -->
-    <div class="prices">
-      @for (p of product()?.prices || []; track $index) {
-        <div class="price-row">
-          <span>{{ p.label }}</span>
-          <span>{{ p.value }}</span>
+    <!-- Precios -->
+    <div class="product-card__prices">
+      @for (price of product().prices; track price.label) {
+        <div class="product-card__price-row" [class.product-card__price-row--bold]="$last">
+          <span class="product-card__price-value">{{ price.value }}</span>
+          @if (price.discount) {
+            <div class="product-card__price-right">
+              @if (price.badges && price.badges.length > 0) {
+                @for (badge of price.badges; track badge.alt) {
+                  <img
+                    class="product-card__badge-img"
+                    [src]="badge.icon"
+                    [alt]="badge.alt"
+                    width="24"
+                    height="16"
+                    loading="lazy"
+                  />
+                }
+              }
+              <span class="product-card__discount">{{ price.discount }}</span>
+            </div>
+          }
         </div>
       }
     </div>
-  </div>
 
-  <!-- FOOTER -->
-  <div class="card-footer">
-    <button class="btn-add" (click)="add.emit(product()!)">Agregar al carrito</button>
+    <div class="product-actions">
+      <button
+        class="product-actions__add"
+        type="button"
+        aria-label="Agregar al carrito"
+        (click)="addToCart()"
+      >
+        Agregar al carrito
+      </button>
 
-    <button class="btn-fav">♡</button>
+      <button
+        class="product-actions__wishlist"
+        type="button"
+        [attr.aria-label]="isWishlisted() ? 'Quitar de favoritos' : 'Agregar a favoritos'"
+        [class.product-actions__wishlist--active]="isWishlisted()"
+        (click)="toggleWishlist()"
+      >
+        <img src="assets/images/heart-icon.svg" alt="heart icon" width="20" />
+      </button>
+    </div>
   </div>
 </article>

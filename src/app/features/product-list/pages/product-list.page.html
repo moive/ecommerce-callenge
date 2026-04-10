@@ -4,9 +4,11 @@
 }
 
 @if (!loading()) {
-  <div class="grid">
+  <div class="product-list__grid">
     @for (product of products(); track $index) {
-      <app-product-card [product]="product" (add)="addProduct($event)" />
+      <div class="product-list__item">
+        <app-product-card [product]="product" />
+      </div>
     }
   </div>
 }
