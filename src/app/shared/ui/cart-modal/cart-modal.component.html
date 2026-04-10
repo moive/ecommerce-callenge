@@ -1,0 +1,119 @@
+@if (isOpen()) {
+  <div
+    class="cart-modal__overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cart-modal-title"
+    (click)="onOverlayClick($event)"
+  >
+    <div class="cart-modal__panel">
+      <header class="cart-modal__header">
+        <div class="cart-modal__title-wrap">
+          <svg
+            class="cart-modal__cart-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 01-8 0" />
+          </svg>
+          <h2 class="cart-modal__title" id="cart-modal-title">Mi carrito</h2>
+        </div>
+        <button
+          class="cart-modal__close"
+          type="button"
+          aria-label="Cerrar carrito"
+          (click)="close()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </header>
+
+      <div class="cart-modal__store">
+        <span class="cart-modal__store-name"> {{ storeName() }} ({{ totalItems() }}) </span>
+      </div>
+
+      <ul class="cart-modal__list" role="list" aria-label="Productos en el carrito">
+        @for (item of items(); track item.product.id + '-' + (item.selectedTab?.id || 'default')) {
+          <li class="cart-modal__item">
+            <img
+              class="cart-modal__item-img"
+              [src]="item.selectedTab?.image || item.product.image"
+              [alt]="item.product.name"
+              width="64"
+              height="64"
+              loading="lazy"
+            />
+
+            <div class="cart-modal__item-info">
+              <p class="cart-modal__item-name">{{ item.product.name }}</p>
+              @if (item.selectedTab?.label) {
+                <span class="cart-modal__item-unit"
+                  >{{ item.selectedTab?.label }} - {{ item.selectedTab?.unitLabel }}</span
+                >
+              } @else if (item.product.unitLabel) {
+                <span class="cart-modal__item-unit">{{ item.product.unitLabel }}</span>
+              }
+              <span class="cart-modal__item-qty">Cantidad: {{ item.quantity }}</span>
+            </div>
+
+            <div class="cart-modal__item-right">
+              <span class="cart-modal__item-price">
+                {{ getItemTotalPrice(item) }}
+              </span>
+              <button
+                class="cart-modal__item-remove"
+                type="button"
+                [attr.aria-label]="'Eliminar ' + item.product.name"
+                (click)="removeItem(item.product.id, item.selectedTab?.id)"
+              >
+                Eliminar
+              </button>
+            </div>
+          </li>
+        }
+      </ul>
+
+      <div class="cart-modal__subtotal">
+        <span class="cart-modal__subtotal-label">Subtotal</span>
+        <span class="cart-modal__subtotal-value">{{ formattedSubtotal() }}</span>
+      </div>
+
+      <footer class="cart-modal__footer">
+        <button
+          class="cart-modal__btn cart-modal__btn--secondary"
+          type="button"
+          (click)="onGoToCart()"
+        >
+          Ir a mi carrito
+        </button>
+        <button class="cart-modal__btn cart-modal__btn--primary" type="button" (click)="onBuyNow()">
+          Comprar ahora
+        </button>
+      </footer>
+    </div>
+  </div>
+}

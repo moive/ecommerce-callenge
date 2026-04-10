@@ -7,7 +7,6 @@ describe('ProductDetailPage', () => {
   let fixture: ComponentFixture<ProductDetailPage>;
 
   beforeEach(async () => {
-    // Mock localStorage
     const localStorageMock = {
       getItem: (key: string) => null,
       setItem: (key: string, value: string) => {},

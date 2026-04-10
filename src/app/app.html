@@ -5,3 +5,11 @@
 </main>
 
 <app-footer />
+<app-cart-modal
+  [items]="cartService.items()"
+  [isOpen]="cartService.isOpen()"
+  (closed)="cartService.closeModal()"
+  (itemRemoved)="removeFromCart($event)"
+  (goToCart)="goToCart()"
+  (buyNow)="buyNow()"
+/>

@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   OnInit,
   signal,
@@ -37,6 +38,9 @@ export default class ProductDetailPage implements OnInit {
   private _isWishlisted = signal<boolean>(false);
   isWishlisted = computed(() => this._isWishlisted());
 
+  private _selectedTab = signal<ProductTab | undefined>(undefined);
+  selectedTab = computed(() => this._selectedTab());
+
   readonly galleryImages = computed<GalleryImage[]>(() => {
     const p = this.product();
     if (!p) return [];
@@ -51,23 +55,21 @@ export default class ProductDetailPage implements OnInit {
     }));
   });
 
-  // 👉 útil para template limpio
   readonly hasProduct = computed(() => !!this.product());
 
-  tabs: ProductTab[] = [
-    {
-      id: 'sobre',
-      label: 'Sobre',
-      image: 'assets/images/sobre.jpg',
-      priceLabel: 'Desde S/ 5.90',
-    },
-    {
-      id: 'caja',
-      label: 'Caja',
-      image: 'assets/images/caja.jpg',
-      priceLabel: 'Desde S/ 25.90',
-    },
-  ];
+  readonly tabs = computed<ProductTab[]>(() => {
+    const p = this.product();
+    return p?.tabs || [];
+  });
+
+  constructor() {
+    effect(() => {
+      const tabsArray = this.tabs();
+      if (tabsArray.length > 0 && !this._selectedTab()) {
+        this._selectedTab.set(tabsArray[0]);
+      }
+    });
+  }
 
   accordionItems: AccordionItem[] = [
     {
@@ -103,13 +105,14 @@ export default class ProductDetailPage implements OnInit {
 
   addToCart() {
     const p = this.product();
+    const tab = this._selectedTab();
 
     if (!p) return;
 
-    this.cart.add(p);
+    this.cart.add(p, tab);
   }
   onTabSelected(tab: ProductTab): void {
-    console.log('Tab seleccionado:', tab);
+    this._selectedTab.set(tab);
   }
   toggleWishlist(): void {
     this._isWishlisted.update((v) => !v);

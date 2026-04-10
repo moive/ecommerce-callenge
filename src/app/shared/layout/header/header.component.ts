@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CartService } from '../../../core/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,10 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   menuOpen = false;
+  cartService = inject(CartService);
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
-    // Evitar scroll del body cuando el drawer está abierto
     document.body.style.overflow = this.menuOpen ? 'hidden' : '';
   }
 }

@@ -1,22 +1,31 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
-import { CartItem, Product } from '../model';
+import { CartItem, Product, ProductTab } from '../model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private _items = signal<CartItem[]>([]);
+  private _isOpen = signal<boolean>(false);
 
   items = this._items.asReadonly();
+  isOpen = this._isOpen.asReadonly();
 
   totalItems = computed(() => this._items().reduce((acc, item) => acc + item.quantity, 0));
 
   totalPrice = computed(() =>
     this._items().reduce((acc, item) => {
-      const price = this.getMainPrice(item.product);
+      const price = this.getPriceForItem(item);
       return acc + price * item.quantity;
     }, 0),
   );
+
+  openModal(): void {
+    this._isOpen.set(true);
+  }
+  closeModal(): void {
+    this._isOpen.set(false);
+  }
 
   constructor() {
     this.loadFromStorage();
@@ -25,26 +34,50 @@ export class CartService {
     });
   }
 
-  add(product: Product) {
+  add(product: Product, selectedTab?: ProductTab) {
     const items = this._items();
-    const existing = items.find((i) => i.product.id === product.id);
+    const tabId = selectedTab?.id;
+
+    const existing = items.find((i) => i.product.id === product.id && i.selectedTab?.id === tabId);
+
     if (existing) {
       this._items.update((items) =>
-        items.map((i) => (i.product.id === product.id ? { ...i, quantity: i.quantity + 1 } : i)),
+        items.map((i) =>
+          i.product.id === product.id && i.selectedTab?.id === tabId
+            ? { ...i, quantity: i.quantity + 1 }
+            : i,
+        ),
       );
     } else {
-      this._items.update((items) => [...items, { product, quantity: 1 }]);
+      this._items.update((items) => [...items, { product, quantity: 1, selectedTab }]);
     }
   }
 
-  remove(productId: string) {
-    this._items.update((items) => items.filter((i) => i.product.id !== productId));
+  remove(productId: string, tabId?: string) {
+    this._items.update((items) =>
+      items.filter((i) => {
+        if (tabId) {
+          return !(i.product.id === productId && i.selectedTab?.id === tabId);
+        }
+
+        return !(i.product.id === productId && !i.selectedTab?.id);
+      }),
+    );
   }
   clear() {
     this._items.set([]);
   }
 
-  private getMainPrice(product: Product): number {
+  private getPriceForItem(item: CartItem): number {
+    const { product, selectedTab } = item;
+
+    if (selectedTab?.priceLabel) {
+      const match = selectedTab.priceLabel.match(/S\/\s*([\d.]+)/);
+      if (match && match[1]) {
+        return parseFloat(match[1]);
+      }
+    }
+
     const value = product.prices[0].value || '0';
     return parseFloat(value.replace(/[^\d.]/g, '')) ?? 0;
   }

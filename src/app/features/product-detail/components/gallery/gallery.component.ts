@@ -21,7 +21,6 @@ import { GalleryImage } from '../../../../core/model';
   styleUrl: './gallery.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 
-  // 🔥 ESTA ES LA CLAVE
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProductGalleryComponent implements AfterViewInit {

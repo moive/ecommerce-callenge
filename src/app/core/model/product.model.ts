@@ -9,6 +9,7 @@ export interface ProductPrice {
 export interface CartItem {
   product: Product;
   quantity: number;
+  selectedTab?: ProductTab;
 }
 
 export interface Product {
@@ -34,6 +35,7 @@ export interface Product {
   }[];
 
   prices: ProductPrice[];
+  tabs?: ProductTab[];
 
   stock: number;
   rating: number;
@@ -67,5 +69,7 @@ export interface ProductTab {
   id: string;
   label: string;
   image: string;
+  images?: string[];
   priceLabel: string;
+  unitLabel?: string;
 }

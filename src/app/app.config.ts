@@ -4,7 +4,6 @@ import { register } from 'swiper/element/bundle';
 
 import { routes } from './app.routes';
 
-// 🔹 Registrar Swiper Web Components
 register();
 
 export const appConfig: ApplicationConfig = {

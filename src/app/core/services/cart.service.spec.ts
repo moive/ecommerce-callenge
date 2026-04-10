@@ -15,7 +15,6 @@ describe('CartService', () => {
   };
 
   beforeEach(() => {
-    // Mock localStorage
     const localStorageMock = {
       getItem: vi.fn(),
       setItem: vi.fn(),

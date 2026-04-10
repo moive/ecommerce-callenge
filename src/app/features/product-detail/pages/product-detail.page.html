@@ -15,7 +15,7 @@
       <div class="wrapper-info">
         <app-product-info [product]="product()!" (add)="addToCart()" />
         <app-product-tabs
-          [tabs]="tabs"
+          [tabs]="tabs()"
           presentacion="Presentación"
           (tabSelected)="onTabSelected($event)"
         />

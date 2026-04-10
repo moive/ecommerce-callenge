@@ -12,15 +12,12 @@ export class ProductTabsComponent {
   tabs = input.required<ProductTab[]>();
   presentacion = input<string>('Presentación');
 
-  // ─── Output ───────────────────────────────────────────────────────────────
   tabSelected = output<ProductTab>();
 
-  // ─── State ────────────────────────────────────────────────────────────────
   private _selectedId = signal<string>('');
 
   selectedId = computed(() => this._selectedId() || this.tabs()[0]?.id || '');
 
-  // ─── Acciones ─────────────────────────────────────────────────────────────
   selectTab(tab: ProductTab): void {
     this._selectedId.set(tab.id);
     this.tabSelected.emit(tab);

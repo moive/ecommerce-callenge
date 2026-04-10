@@ -69,7 +69,11 @@
         </button>
       </search>
 
-      <a class="main-header__cart" href="/carrito" aria-label="Ver carrito de compras, 0 productos">
+      <button
+        class="main-header__cart"
+        (click)="cartService.openModal()"
+        [attr.aria-label]="'Ver carrito de compras, ' + cartService.totalItems() + ' productos'"
+      >
         <img
           src="assets/images/cart-icon.svg"
           alt="Carrito de compras"
@@ -77,8 +81,10 @@
           height="20"
           loading="lazy"
         />
-        <span class="main-header__cart-count" aria-live="polite">0</span>
-      </a>
+        <span class="main-header__cart-count" aria-live="polite">{{
+          cartService.totalItems()
+        }}</span>
+      </button>
     </div>
   </div>
 
