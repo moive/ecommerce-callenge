@@ -21,4 +21,18 @@ export class SeoService {
       content: product.name,
     });
   }
+
+  setPageMeta(titleText: string, descriptionText: string) {
+    this.title.setTitle(titleText);
+
+    this.meta.updateTag({
+      name: 'description',
+      content: descriptionText,
+    });
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: titleText,
+    });
+  }
 }

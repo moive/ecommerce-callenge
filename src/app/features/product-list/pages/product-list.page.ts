@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { Product } from '../../../core/model';
-import { BreadcrumbService, CartService, ProductService } from '../../../core/services';
+import { AnalyticsService, SeoService, BreadcrumbService, CartService, ProductService } from '../../../core/services';
 import { ProductCard } from '../../../shared/ui/product-card/product-card.component';
 import { LoadingComponent } from '../../../shared/ui/loading/loading.component';
 import { ErrorComponent } from '../../../shared/ui/error/error.component';
@@ -17,6 +17,8 @@ export default class ProductListPage implements OnInit {
   private productService = inject(ProductService);
   private cart = inject(CartService);
   private breadcrumb = inject(BreadcrumbService);
+  private seo = inject(SeoService);
+  private analytics = inject(AnalyticsService);
 
   products = signal<Product[]>([]);
   loading = signal(true);
@@ -42,7 +44,14 @@ export default class ProductListPage implements OnInit {
       .subscribe((res) => {
         if (res.length > 0) {
           this.products.set(res);
+          this.analytics.trackViewItemList(res, 'Catálogo Principal');
         }
+        
+        this.seo.setPageMeta(
+          'Catálogo de Productos | Farmacia', 
+          'Descubre nuestra amplia variedad de productos de farmacia con los mejores precios.'
+        );
+        
         this.loading.set(false);
       });
   }

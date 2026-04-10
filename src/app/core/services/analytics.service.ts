@@ -55,6 +55,24 @@ export class AnalyticsService {
     });
   }
 
+  trackViewItemList(products: Product[], listName: string = 'Catálogo') {
+    this.push({
+      event: 'view_item_list',
+      ecommerce: {
+        item_list_name: listName,
+        items: products.map((product, index) => ({
+          item_id: product.id,
+          item_name: product.name,
+          item_brand: product.brand,
+          item_category: product.category,
+          price: this.getMainPrice(product),
+          item_variant: product.unitLabel,
+          index,
+        })),
+      },
+    });
+  }
+
   private getMainPrice(product: Product): number {
     const raw = product.prices?.[0]?.value || '0';
     return parseFloat(raw.replace(/[^\d.]/g, '')) || 0;
