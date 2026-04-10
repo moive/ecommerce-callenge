@@ -16,6 +16,7 @@ import {
   SeoService,
   BreadcrumbService,
 } from '../../../core/services';
+import { catchError, of } from 'rxjs';
 import { AccordionItem, GalleryImage, Product, ProductTab } from '../../../core/model';
 import { ProductGalleryComponent } from '../components/gallery/gallery.component';
 import { ProductInfoComponent } from '../components/info/info.component';
@@ -23,6 +24,7 @@ import { ProductTabsComponent } from '../components/tabs/tabs.component';
 import { ProductAccordionComponent } from '../components/product-accordion/product-accordion.component';
 import { CrossSellingComponent } from '../components/cross-selling/cross-selling.component';
 import { LoadingComponent } from '../../../shared/ui/loading/loading.component';
+import { ErrorComponent } from '../../../shared/ui/error/error.component';
 
 @Component({
   selector: 'app-product-detail',
@@ -33,6 +35,7 @@ import { LoadingComponent } from '../../../shared/ui/loading/loading.component';
     ProductAccordionComponent,
     CrossSellingComponent,
     LoadingComponent,
+    ErrorComponent,
   ],
   templateUrl: './product-detail.page.html',
   styleUrl: './product-detail.page.scss',
@@ -45,6 +48,7 @@ export default class ProductDetailPage implements OnInit {
 
   product = signal<Product | null>(null);
   loading = signal(true);
+  error = signal<string | null>(null);
   private _isWishlisted = signal<boolean>(false);
   isWishlisted = computed(() => this._isWishlisted());
   relatedProducts = signal<Product[]>([]);
@@ -116,15 +120,23 @@ export default class ProductDetailPage implements OnInit {
       return;
     }
 
-    this.productService.getProductById(id).subscribe((p) => {
-      this.product.set(p || null);
-      this.loading.set(false);
-      if (p) {
-        this.loadBreadcrumb(p);
-        this.seo.setProductMeta(p);
-        this.analytics.trackViewItem(p);
-      }
-    });
+    this.productService.getProductById(id)
+      .pipe(
+        catchError((err) => {
+          this.error.set(err.message);
+          this.loading.set(false);
+          return of(null);
+        })
+      )
+      .subscribe((p) => {
+        this.product.set(p || null);
+        this.loading.set(false);
+        if (p) {
+          this.loadBreadcrumb(p);
+          this.seo.setProductMeta(p);
+          this.analytics.trackViewItem(p);
+        }
+      });
 
     this.loadProducts();
   }

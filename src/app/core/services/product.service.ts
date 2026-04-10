@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../model/product.model';
-import { delay, of } from 'rxjs';
+import { delay, of, throwError } from 'rxjs';
 import { PRODUCTS_MOCK } from '../data/product.mock';
 
 @Injectable({
@@ -14,6 +14,10 @@ export class ProductService {
   }
 
   getProductById(id: string) {
-    return of(this.products.find((p) => p.id === id)).pipe(delay(500));
+    const product = this.products.find((p) => p.id === id);
+    if (!product) {
+      return throwError(() => new Error('El producto no existe o ya no está disponible.')).pipe(delay(500));
+    }
+    return of(product).pipe(delay(500));
   }
 }

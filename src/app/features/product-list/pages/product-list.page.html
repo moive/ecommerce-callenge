@@ -3,7 +3,11 @@
   <app-loading />
 }
 
-@if (!loading()) {
+@if (error()) {
+  <app-error [message]="error()!" />
+}
+
+@if (!loading() && !error()) {
   <div class="product-list__grid">
     @for (product of products(); track $index) {
       <div class="product-list__item">

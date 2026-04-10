@@ -2,7 +2,11 @@
   <app-loading />
 }
 
-@if (product()) {
+@if (error()) {
+  <app-error [message]="error()!" />
+}
+
+@if (product() && !error()) {
   <main class="pdp">
     <section class="pdp-main">
       @if (product(); as p) {
