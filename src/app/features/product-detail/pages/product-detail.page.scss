@@ -1,0 +1,123 @@
+$color-green-primary: #17a15b;
+$color-green-dark: #008c44;
+$color-green-light: #edf8f2;
+$color-white: #ffffff;
+$color-text-title: #354159;
+$color-border: #e0e0e0;
+
+$font-base: 'Inter', sans-serif;
+$transition: 0.2s ease;
+
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+@mixin from($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+.pdp {
+  &-main {
+    padding: 24px;
+    display: flex;
+    border-radius: 12px;
+    background: $color-white;
+  }
+
+  .wrapper-gallery {
+    @include from($bp-sm) {
+      width: 65%;
+    }
+  }
+
+  .wrapper-info {
+    @include from($bp-sm) {
+      width: 35%;
+      flex-basis: 480px;
+    }
+  }
+}
+
+.product-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 28px;
+
+  &__add {
+    flex: 1;
+    padding: 14px 24px;
+    background-color: $color-green-primary;
+    color: $color-white;
+    border: none;
+    border-radius: 50px;
+    font-family: $font-base;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color $transition,
+      transform $transition;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: $color-green-dark;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-green-primary;
+      outline-offset: 3px;
+    }
+  }
+
+  &__wishlist {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: $color-green-light;
+    border: 1.5px solid $color-border;
+    border-radius: 50%;
+    cursor: pointer;
+    color: $color-text-title;
+    transition:
+      border-color $transition,
+      color $transition,
+      transform $transition;
+
+    &:hover {
+      border-color: $color-green-primary;
+      color: $color-green-primary;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &--active {
+      border-color: $color-green-primary;
+      color: $color-white;
+      background-color: $color-green-primary;
+
+      svg {
+        fill: $color-white;
+        stroke: $color-green-primary;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-green-primary;
+      outline-offset: 3px;
+    }
+  }
+}

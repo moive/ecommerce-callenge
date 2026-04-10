@@ -1,1 +1,45 @@
-<p>product-detail works!</p>
+@if (loading()) {
+  <p>Cargando...</p>
+}
+
+@if (product()) {
+  <main class="pdp">
+    <section class="pdp-main">
+      @if (product(); as p) {
+        <div class="wrapper-gallery">
+          <app-product-gallery [images]="galleryImages()" [productName]="p.name" />
+        </div>
+      } @else {
+        <p>Cargando producto...</p>
+      }
+      <div class="wrapper-info">
+        <app-product-info [product]="product()!" (add)="addToCart()" />
+        <app-product-tabs
+          [tabs]="tabs"
+          presentacion="Presentación"
+          (tabSelected)="onTabSelected($event)"
+        />
+        <div class="product-actions">
+          <button
+            class="product-actions__add"
+            type="button"
+            aria-label="Agregar al carrito"
+            (click)="addToCart()"
+          >
+            Agregar al carrito
+          </button>
+
+          <button
+            class="product-actions__wishlist"
+            type="button"
+            [attr.aria-label]="isWishlisted() ? 'Quitar de favoritos' : 'Agregar a favoritos'"
+            [class.product-actions__wishlist--active]="isWishlisted()"
+            (click)="toggleWishlist()"
+          >
+            <img src="assets/images/heart-icon.svg" alt="heart icon" width="20" />
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+}

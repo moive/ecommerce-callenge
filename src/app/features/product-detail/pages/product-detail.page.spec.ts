@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import ProductDetailPage from './product-detail.page';
 
 describe('ProductDetailPage', () => {
@@ -6,8 +7,33 @@ describe('ProductDetailPage', () => {
   let fixture: ComponentFixture<ProductDetailPage>;
 
   beforeEach(async () => {
+    // Mock localStorage
+    const localStorageMock = {
+      getItem: (key: string) => null,
+      setItem: (key: string, value: string) => {},
+      removeItem: (key: string) => {},
+      clear: () => {},
+    };
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorageMock,
+      writable: true,
+    });
+
     await TestBed.configureTestingModule({
       imports: [ProductDetailPage],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get: (key: string) => '1',
+              },
+            },
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductDetailPage);

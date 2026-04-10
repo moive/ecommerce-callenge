@@ -1,6 +1,9 @@
 export interface ProductPrice {
   label: string;
   value: string;
+  originalValue?: string;
+  discount?: string;
+  badges?: ProductBadgePrice[];
 }
 
 export interface CartItem {
@@ -11,11 +14,58 @@ export interface CartItem {
 export interface Product {
   id: string;
   name: string;
+  slug: string;
+
+  brand: string;
+  category: string;
+
   image: string;
-  description: string;
-  category?: string;
-  brand?: string;
+  images: string[];
+
   badge?: string;
-  unitLabel?: string;
+  unitLabel: string;
+
+  description: string;
+  details: string;
+
+  specifications: {
+    label: string;
+    value: string;
+  }[];
+
   prices: ProductPrice[];
+
+  stock: number;
+  rating: number;
+  reviewsCount: number;
+
+  tags?: string[];
+}
+
+export interface ProductBadgePrice {
+  icon: string;
+  alt: string;
+}
+
+export interface ProductInfoPrice {
+  label: string;
+  value: string;
+  originalValue?: string;
+  discount?: string;
+  badges?: ProductBadgePrice[];
+}
+
+export interface ProductInfo {
+  sku: string;
+  unitLabel: string;
+  name: string;
+  prices: ProductInfoPrice[];
+  description: string;
+  descriptionCollapsed: boolean;
+}
+export interface ProductTab {
+  id: string;
+  label: string;
+  image: string;
+  priceLabel: string;
 }
