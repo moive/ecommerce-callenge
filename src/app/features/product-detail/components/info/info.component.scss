@@ -1,0 +1,241 @@
+$color-green-primary: #17a15b;
+$color-green-dark: #008c44;
+$color-blue: #00b1ff;
+$color-white: #ffffff;
+$color-text-title: #354159;
+$color-text-muted: #7e8ba7;
+$color-text-dark: #222222;
+$color-border: #e8e8e8;
+$color-bg-bottom: #f8f8f8;
+$color-discount-bg: #17a15b;
+$color-discount-text: #ffffff;
+$color-discount-bg-2: #00b1ff;
+$color-original: #999999;
+
+$font-base: 'Inter', sans-serif;
+$transition: 0.2s ease;
+
+$bp-md: 768px;
+$bp-lg: 1024px;
+
+@mixin from($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: $font-base;
+  color: $color-text-title;
+  width: 100%;
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__unit {
+    font-size: 12px;
+    font-weight: 500;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__sku {
+    font-size: 12px;
+    color: $color-text-muted;
+  }
+
+  &__name {
+    font-size: 18px;
+    font-weight: 700;
+    color: $color-text-title;
+    line-height: 1.35;
+    margin: 0;
+
+    @include from($bp-md) {
+      font-size: 20px;
+    }
+  }
+
+  &__prices {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 0;
+  }
+
+  &__price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 28px;
+  }
+
+  &__price-label {
+    font-size: 13px;
+    color: $color-text-muted;
+    flex-shrink: 0;
+  }
+
+  &__price-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  &__price-original {
+    font-size: 13px;
+    color: $color-original;
+    text-decoration: line-through;
+
+    s {
+      text-decoration: line-through;
+    }
+  }
+
+  &__price-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: $color-text-title;
+  }
+
+  &__discount {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    background-color: $color-discount-bg;
+    color: $color-discount-text;
+
+    &:last-child:not(:first-child) {
+      background-color: $color-discount-bg-2;
+    }
+  }
+
+  &__badges {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__badge {
+    height: 18px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 3px;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__description-body {
+    font-size: 13px;
+    line-height: 1.6;
+    color: $color-text-muted;
+    max-height: 80px;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+
+    &--expanded {
+      max-height: 1000px;
+    }
+
+    ::ng-deep ul {
+      margin: 0;
+      padding-left: 18px;
+
+      li {
+        margin-bottom: 6px;
+        color: $color-text-title;
+      }
+    }
+  }
+
+  &__toggle {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: $font-base;
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-blue;
+    cursor: pointer;
+    transition: color $transition;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-green-primary;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+  &__group-price {
+    display: flex;
+    min-width: 145px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+}
+.priceRegular {
+  color: $color-text-muted;
+  text-decoration: line-through;
+}
+.priceCardExclusive {
+  font-weight: 600;
+}
+
+.CreditCard {
+  margin-right: 30px;
+}
+
+.discount-badge {
+  background: $color-text-title;
+  color: $color-white;
+  font-weight: 600;
+  padding: 4px 6px;
+  display: inline-block;
+  border-radius: 5px;
+  position: relative;
+  font-size: 9px;
+  &::before {
+    position: absolute;
+    left: -9px;
+    top: 50%;
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid $color-text-title;
+    transform: translateY(-50%) rotate(-90deg);
+  }
+
+  // .salePrice {
+  // }
+
+  &.bgCardExclusive {
+    background: $color-discount-bg-2;
+    &::before {
+      border-bottom: 10px solid $color-discount-bg-2;
+    }
+  }
+}

@@ -1,0 +1,84 @@
+<article class="product-info" aria-label="Información del producto">
+  <header class="product-info__meta">
+    <span class="product-info__unit">{{ product().unitLabel }}</span>
+    <span class="product-info__sku">SKU {{ product().id }}</span>
+  </header>
+
+  <h1 class="product-info__name">{{ product().name }}</h1>
+
+  <section class="product-info__prices" aria-label="Precios del producto">
+    @for (price of product().prices; track price.label; let i = $index) {
+      <div class="product-info__price-row">
+        <span class="product-info__price-label">{{ price.label }}</span>
+
+        <div class="product-info__price-right">
+          @if (price.originalValue) {
+            <span class="product-info__price-original" aria-label="Precio original tachado">
+              <s>{{ price.originalValue }}</s>
+            </span>
+          }
+
+          @if (price.badges && price.badges.length > 0) {
+            <div class="product-info__badges" aria-label="Tarjetas aceptadas">
+              @for (badge of price.badges; track badge.alt) {
+                <img
+                  class="product-info__badge"
+                  [src]="badge.icon"
+                  [alt]="badge.alt"
+                  width="28"
+                  height="18"
+                  loading="lazy"
+                />
+              }
+            </div>
+          }
+          @if (i == 2) {
+            <img
+              class="CreditCard"
+              src="assets/images/CreditCard.svg"
+              alt="CreditCard"
+              width="45"
+            />
+          }
+          <span class="product-info__group-price">
+            <span
+              class="product-info__price-value"
+              [class.priceRegular]="i === 0"
+              [class.priceCardExclusive]="i === 2"
+              >{{ price.value }}</span
+            >
+            @if (price.discount) {
+              <span class="discount-badge" [class.bgCardExclusive]="i === 2">{{
+                price.discount
+              }}</span>
+            }
+          </span>
+
+          <!-- @if (price.discount) {
+            <span class="product-info__discount" aria-label="Descuento {{ price.discount }}">
+              {{ price.discount }}
+            </span>
+          } -->
+        </div>
+      </div>
+    }
+  </section>
+
+  <section class="product-info__description" aria-label="Descripción del producto">
+    <div
+      class="product-info__description-body"
+      [class.product-info__description-body--expanded]="isExpanded()"
+      [innerHTML]="product().description"
+    ></div>
+
+    <button
+      class="product-info__toggle"
+      type="button"
+      [attr.aria-expanded]="isExpanded()"
+      aria-controls="product-description"
+      (click)="toggleDescription()"
+    >
+      {{ isExpanded() ? 'Ver menos' : 'Ver más' }}
+    </button>
+  </section>
+</article>
