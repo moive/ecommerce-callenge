@@ -67,7 +67,7 @@ export const PRODUCTS_MOCK: Product[] = [
     category: 'TABLETAS',
 
     image: 'assets/images/huggies.png',
-    images: ['https://via.placeholder.com/600?4', 'https://via.placeholder.com/600?5'],
+    images: ['assets/images/imagen-no-disponible.jpg', 'assets/images/imagen-no-disponible.jpg'],
 
     badge: 'Oferta',
     unitLabel: '20 tabletas',
@@ -90,16 +90,19 @@ export const PRODUCTS_MOCK: Product[] = [
       {
         id: 'blister-10',
         label: 'Blíster 10 Tabletas',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?4'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: ['assets/images/imagen-no-disponible.jpg'],
         priceLabel: 'S/ 2.80',
         unitLabel: '10 tabletas',
       },
       {
         id: 'caja-20',
         label: 'Caja 20 Tabletas',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?4', 'https://via.placeholder.com/600?5'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: [
+          'assets/images/imagen-no-disponible.jpg',
+          'assets/images/imagen-no-disponible.jpg',
+        ],
         priceLabel: 'S/ 5.50',
         unitLabel: '20 tabletas',
       },
@@ -119,7 +122,7 @@ export const PRODUCTS_MOCK: Product[] = [
     category: 'CAPSULAS',
 
     image: 'assets/images/huggies.png',
-    images: ['https://via.placeholder.com/600?6', 'https://via.placeholder.com/600?7'],
+    images: ['assets/images/imagen-no-disponible.jpg'],
 
     badge: 'Más vendido',
     unitLabel: '24 cápsulas',
@@ -143,24 +146,27 @@ export const PRODUCTS_MOCK: Product[] = [
       {
         id: 'mini',
         label: 'Mini Pack',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?6'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: ['assets/images/imagen-no-disponible.jpg'],
         priceLabel: 'S/ 6.50',
         unitLabel: '10 cápsulas',
       },
       {
         id: 'regular',
         label: 'Pack Regular',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?6', 'https://via.placeholder.com/600?7'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: [
+          'assets/images/imagen-no-disponible.jpg',
+          'assets/images/imagen-no-disponible.jpg',
+        ],
         priceLabel: 'S/ 12.00',
         unitLabel: '24 cápsulas',
       },
       {
         id: 'maxi',
         label: 'Pack Ahorro',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?7'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: ['assets/images/imagen-no-disponible.jpg'],
         priceLabel: 'S/ 18.50',
         unitLabel: '48 cápsulas',
       },
@@ -180,7 +186,7 @@ export const PRODUCTS_MOCK: Product[] = [
     category: 'JARABE',
 
     image: 'assets/images/huggies.png',
-    images: ['https://via.placeholder.com/600?8', 'https://via.placeholder.com/600?9'],
+    images: ['assets/images/imagen-no-disponible.jpg', 'assets/images/imagen-no-disponible.jpg'],
 
     badge: 'Recomendado',
     unitLabel: '120 ml',
@@ -203,16 +209,19 @@ export const PRODUCTS_MOCK: Product[] = [
       {
         id: 'frasco-120',
         label: 'Frasco 120 ml',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?8'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: ['assets/images/imagen-no-disponible.jpg'],
         priceLabel: 'S/ 18.50',
         unitLabel: '120 ml',
       },
       {
         id: 'frasco-300',
         label: 'Frasco 300 ml',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?8', 'https://via.placeholder.com/600?9'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: [
+          'assets/images/imagen-no-disponible.jpg',
+          'assets/images/imagen-no-disponible.jpg',
+        ],
         priceLabel: 'S/ 32.90',
         unitLabel: '300 ml',
       },
@@ -232,7 +241,7 @@ export const PRODUCTS_MOCK: Product[] = [
     category: 'SUPLEMENTOS',
 
     image: 'assets/images/huggies.png',
-    images: ['https://via.placeholder.com/600?10', 'https://via.placeholder.com/600?11'],
+    images: ['assets/images/imagen-no-disponible.jpg', 'assets/images/imagen-no-disponible.jpg'],
 
     badge: 'Refuerza defensas',
     unitLabel: '10 tabletas',
@@ -255,16 +264,19 @@ export const PRODUCTS_MOCK: Product[] = [
       {
         id: 'tubo-10',
         label: 'Tubo 10 Tabletas',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?10'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: ['assets/images/imagen-no-disponible.jpg'],
         priceLabel: 'S/ 22.00',
         unitLabel: '10 tabletas',
       },
       {
         id: 'caja-30',
         label: 'Caja 30 Tabletas',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?10', 'https://via.placeholder.com/600?11'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: [
+          'assets/images/imagen-no-disponible.jpg',
+          'assets/images/imagen-no-disponible.jpg',
+        ],
         priceLabel: 'S/ 55.00',
         unitLabel: '30 tabletas',
       },
@@ -284,7 +296,7 @@ export const PRODUCTS_MOCK: Product[] = [
     category: 'HIGIENE',
 
     image: 'assets/images/huggies.png',
-    images: ['https://via.placeholder.com/600?12'],
+    images: ['assets/images/imagen-no-disponible.jpg'],
 
     badge: 'Esencial',
     unitLabel: '250 ml',
@@ -307,24 +319,24 @@ export const PRODUCTS_MOCK: Product[] = [
       {
         id: 'botella-250',
         label: 'Botella 250 ml',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?12'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: ['assets/images/imagen-no-disponible.jpg'],
         priceLabel: 'S/ 10.90',
         unitLabel: '250 ml',
       },
       {
         id: 'botella-500',
         label: 'Botella 500 ml',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?12'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: ['assets/images/imagen-no-disponible.jpg'],
         priceLabel: 'S/ 18.90',
         unitLabel: '500 ml',
       },
       {
         id: 'pack-duo',
         label: 'Pack Dúo 250 ml',
-        image: 'https://via.placeholder.com/300',
-        images: ['https://via.placeholder.com/600?12'],
+        image: 'assets/images/imagen-no-disponible.jpg',
+        images: ['assets/images/imagen-no-disponible.jpg'],
         priceLabel: 'S/ 18.50',
         unitLabel: '2 botellas x 250 ml',
       },
