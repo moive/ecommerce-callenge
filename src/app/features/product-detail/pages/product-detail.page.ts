@@ -109,11 +109,15 @@ export class ProductDetailPage implements OnInit {
   ];
 
   ngOnInit() {
-    this.initializeProducts();
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      this.initializeProducts(id);
+    });
   }
 
-  initializeProducts() {
-    const id = this.route.snapshot.paramMap.get('id');
+  initializeProducts(id: string | null) {
+    this.loading.set(true);
+    this.error.set(null);
 
     if (!id) {
       this.loading.set(false);

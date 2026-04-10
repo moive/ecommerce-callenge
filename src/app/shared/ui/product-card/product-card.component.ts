@@ -9,11 +9,11 @@ import {
 } from '@angular/core';
 import { Product } from '../../../core/model';
 import { CartService } from '../../../core/services';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
-  imports: [RouterModule],
+  imports: [RouterModule, RouterLink],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
