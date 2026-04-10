@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@ang
 import { Product } from '../../../core/model';
 import { CartService, ProductService } from '../../../core/services';
 import { ProductCard } from '../../../shared/ui/product-card/product-card.component';
+import { LoadingComponent } from '../../../shared/ui/loading/loading.component';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ProductCard],
+  imports: [ProductCard, LoadingComponent],
   templateUrl: './product-list.page.html',
   styleUrl: './product-list.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

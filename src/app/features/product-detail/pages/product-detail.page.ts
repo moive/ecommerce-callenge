@@ -16,6 +16,7 @@ import { ProductInfoComponent } from '../components/info/info.component';
 import { ProductTabsComponent } from '../components/tabs/tabs.component';
 import { ProductAccordionComponent } from '../components/product-accordion/product-accordion.component';
 import { CrossSellingComponent } from '../components/cross-selling/cross-selling.component';
+import { LoadingComponent } from '../../../shared/ui/loading/loading.component';
 
 @Component({
   selector: 'app-product-detail',
@@ -25,6 +26,7 @@ import { CrossSellingComponent } from '../components/cross-selling/cross-selling
     ProductTabsComponent,
     ProductAccordionComponent,
     CrossSellingComponent,
+    LoadingComponent,
   ],
   templateUrl: './product-detail.page.html',
   styleUrl: './product-detail.page.scss',
