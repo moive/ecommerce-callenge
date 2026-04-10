@@ -1,17 +1,21 @@
 <nav class="breadcrumb" aria-label="Ruta de navegación">
-  <ol class="breadcrumb__list" role="list">
-    <li class="breadcrumb__item">
-      <a class="breadcrumb__link" routerLink="/">Inicio</a>
-      <span class="breadcrumb__separator" aria-hidden="true">›</span>
-    </li>
+  <ol class="breadcrumb__list">
+    @for (item of items(); track $index) {
+      <li class="breadcrumb__item">
+        @if (item.url) {
+          <a class="breadcrumb__link" [routerLink]="item.url">
+            {{ item.label }}
+          </a>
+        } @else {
+          <span class="breadcrumb__current" aria-current="page">
+            {{ item.label }}
+          </span>
+        }
 
-    <li class="breadcrumb__item">
-      <a class="breadcrumb__link" routerLink="/farmacia">Farmacia</a>
-      <span class="breadcrumb__separator" aria-hidden="true">›</span>
-    </li>
-
-    <li class="breadcrumb__item">
-      <span class="breadcrumb__current" aria-current="page">Gripe</span>
-    </li>
+        @if ($index < items().length - 1) {
+          <span class="breadcrumb__separator">›</span>
+        }
+      </li>
+    }
   </ol>
 </nav>

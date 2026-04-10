@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { Product } from '../../../core/model';
-import { CartService, ProductService } from '../../../core/services';
+import { BreadcrumbService, CartService, ProductService } from '../../../core/services';
 import { ProductCard } from '../../../shared/ui/product-card/product-card.component';
 import { LoadingComponent } from '../../../shared/ui/loading/loading.component';
 
@@ -14,12 +14,17 @@ import { LoadingComponent } from '../../../shared/ui/loading/loading.component';
 export default class ProductListPage implements OnInit {
   private productService = inject(ProductService);
   private cart = inject(CartService);
+  private breadcrumb = inject(BreadcrumbService);
 
   products = signal<Product[]>([]);
   loading = signal(true);
 
   ngOnInit(): void {
+    this.loadBreadcrumb();
     this.intializeProducts();
+  }
+  ngOnDestroy() {
+    this.breadcrumb.reset();
   }
 
   intializeProducts() {
@@ -27,6 +32,10 @@ export default class ProductListPage implements OnInit {
       this.products.set(res);
       this.loading.set(false);
     });
+  }
+
+  loadBreadcrumb() {
+    this.breadcrumb.set([{ label: 'Inicio', url: '/' }, { label: 'Farmacia' }]);
   }
 
   addProduct(product: Product) {

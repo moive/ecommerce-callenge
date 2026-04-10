@@ -9,7 +9,13 @@ import {
 } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
-import { ProductService, CartService, AnalyticsService, SeoService } from '../../../core/services';
+import {
+  ProductService,
+  CartService,
+  AnalyticsService,
+  SeoService,
+  BreadcrumbService,
+} from '../../../core/services';
 import { AccordionItem, GalleryImage, Product, ProductTab } from '../../../core/model';
 import { ProductGalleryComponent } from '../components/gallery/gallery.component';
 import { ProductInfoComponent } from '../components/info/info.component';
@@ -63,7 +69,8 @@ export default class ProductDetailPage implements OnInit {
   readonly hasProduct = computed(() => !!this.product());
 
   private seo = inject(SeoService);
-  analytics = inject(AnalyticsService);
+  private analytics = inject(AnalyticsService);
+  private breadcrumb = inject(BreadcrumbService);
 
   readonly tabs = computed<ProductTab[]>(() => {
     const p = this.product();
@@ -98,6 +105,10 @@ export default class ProductDetailPage implements OnInit {
   ];
 
   ngOnInit() {
+    this.initializeProducts();
+  }
+
+  initializeProducts() {
     const id = this.route.snapshot.paramMap.get('id');
 
     if (!id) {
@@ -109,12 +120,28 @@ export default class ProductDetailPage implements OnInit {
       this.product.set(p || null);
       this.loading.set(false);
       if (p) {
+        this.loadBreadcrumb(p);
         this.seo.setProductMeta(p);
         this.analytics.trackViewItem(p);
       }
     });
 
     this.loadProducts();
+  }
+
+  ngOnDestroy() {
+    this.breadcrumb.reset();
+  }
+
+  loadBreadcrumb(p: Product | null) {
+    if (p) {
+      this.breadcrumb.set([
+        { label: 'Inicio', url: '/' },
+        { label: 'Farmacia', url: '/' },
+        { label: p.category },
+        { label: p.name },
+      ]);
+    }
   }
 
   addToCart() {
