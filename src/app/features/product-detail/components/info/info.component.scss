@@ -81,15 +81,21 @@ $bp-lg: 1024px;
   &__price-label {
     font-size: 13px;
     color: $color-text-muted;
-    flex-shrink: 0;
+    flex-shrink: 1;
+
+    @include from($bp-md) {
+      flex-shrink: 0;
+    }
   }
 
   &__price-right {
     display: flex;
     align-items: center;
     gap: 8px;
-    flex-wrap: wrap;
     justify-content: flex-end;
+    @include from($bp-md) {
+      flex-wrap: wrap;
+    }
   }
 
   &__price-original {
@@ -204,7 +210,10 @@ $bp-lg: 1024px;
 }
 
 .CreditCard {
-  margin-right: 30px;
+  margin-right: 0;
+  @include from($bp-md) {
+    margin-right: 30px;
+  }
 }
 
 .discount-badge {

@@ -20,6 +20,8 @@ $bp-xl: 1280px;
 }
 
 .pdp {
+  flex: 1;
+  min-height: 60vh;
   &-main {
     padding: 24px;
     display: flex;
