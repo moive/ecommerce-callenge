@@ -9,14 +9,20 @@ import {
 
 import { ActivatedRoute } from '@angular/router';
 import { ProductService, CartService } from '../../../core/services';
-import { GalleryImage, Product, ProductTab } from '../../../core/model';
+import { AccordionItem, GalleryImage, Product, ProductTab } from '../../../core/model';
 import { ProductGalleryComponent } from '../components/gallery/gallery.component';
 import { ProductInfoComponent } from '../components/info/info.component';
 import { ProductTabsComponent } from '../components/tabs/tabs.component';
+import { ProductAccordionComponent } from '../components/product-accordion/product-accordion.component';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [ProductGalleryComponent, ProductInfoComponent, ProductTabsComponent],
+  imports: [
+    ProductGalleryComponent,
+    ProductInfoComponent,
+    ProductTabsComponent,
+    ProductAccordionComponent,
+  ],
   templateUrl: './product-detail.page.html',
   styleUrl: './product-detail.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,6 +66,24 @@ export default class ProductDetailPage implements OnInit {
       label: 'Caja',
       image: 'assets/images/caja.jpg',
       priceLabel: 'Desde S/ 25.90',
+    },
+  ];
+
+  accordionItems: AccordionItem[] = [
+    {
+      id: 'descripcion',
+      title: 'Descripción larga',
+      content: '<p>Este producto es distribuido por Inretail Pharma S.A. (Ley 32033)</p>',
+    },
+    {
+      id: 'composicion',
+      title: 'Composición',
+      content: '<p>...</p>',
+    },
+    {
+      id: 'contraindicaciones',
+      title: 'Contraindicaciones',
+      content: '<p>...</p>',
     },
   ];
 

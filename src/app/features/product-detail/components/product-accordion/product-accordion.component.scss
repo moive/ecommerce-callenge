@@ -1,0 +1,92 @@
+$color-green-primary: #17a15b;
+$color-white: #ffffff;
+$color-text-title: #354159;
+$color-text-muted: #7a8499;
+$color-border: #e8e8e8;
+
+$font-base: 'Inter', sans-serif;
+$transition: 0.2s ease;
+
+.accordion {
+  width: 100%;
+  font-family: $font-base;
+
+  &__item {
+    border-bottom: 1px solid $color-border;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 12px;
+    transition: color $transition;
+
+    &:hover .accordion__title {
+      color: $color-green-primary;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-green-primary;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-text-title;
+    transition: color $transition;
+  }
+
+  &__chevron {
+    flex-shrink: 0;
+    color: $color-text-title;
+    transition: transform 0.25s ease;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__body {
+    max-height: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.3s ease,
+      padding 0.3s ease;
+
+    &--open {
+      max-height: 600px;
+      padding-bottom: 18px;
+    }
+  }
+
+  &__content {
+    font-size: 13px;
+    line-height: 1.6;
+    color: $color-text-muted;
+    padding: 0 24px;
+
+    ::ng-deep p {
+      margin: 0;
+    }
+    ::ng-deep ul {
+      margin: 0;
+      padding-left: 16px;
+      li {
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
