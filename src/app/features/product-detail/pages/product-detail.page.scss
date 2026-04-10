@@ -23,18 +23,26 @@ $bp-xl: 1280px;
   &-main {
     padding: 24px;
     display: flex;
+    flex-direction: column;
     border-radius: 12px;
     background: $color-white;
+    @include from($bp-md) {
+      flex-direction: row;
+    }
   }
 
   .wrapper-gallery {
-    @include from($bp-sm) {
+    order: 1;
+    @include from($bp-md) {
+      order: 0;
+      margin-right: 28px;
       width: 65%;
     }
   }
 
   .wrapper-info {
-    @include from($bp-sm) {
+    margin-bottom: 40px;
+    @include from($bp-md) {
       width: 35%;
       flex-basis: 480px;
     }
