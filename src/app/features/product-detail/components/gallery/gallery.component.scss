@@ -1,0 +1,111 @@
+// ─── Tokens usados ─────────────────────────────────────────────────────────────
+$color-blue: #1a8ff1;
+$color-white: #ffffff;
+$color-btn-border: #cccccc;
+
+// ─── Breakpoints ──────────────────────────────────────────────────────────────
+$bp-md: 768px;
+
+.product-gallery {
+  &__desktop {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    align-items: start;
+
+    @media (max-width: $bp-md) {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    display: none;
+    width: 100%;
+
+    @media (max-width: $bp-md) {
+      display: block;
+    }
+  }
+
+  // 🔹 THUMBNAILS
+  &__thumbs {
+    height: 420px;
+
+    swiper-slide {
+      opacity: 0.6;
+      cursor: pointer;
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+
+      &:hover {
+        opacity: 1;
+        // transform: scale(1.05);
+      }
+    }
+
+    .swiper-slide-thumb-active {
+      opacity: 1;
+    }
+  }
+
+  &__thumb-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    object-fit: cover;
+
+    .swiper-slide-thumb-active & {
+      border-color: $color-blue;
+    }
+  }
+
+  // 🔹 MAIN (Desktop + Mobile)
+  &__main {
+    width: 100%;
+
+    &::part(button-prev),
+    &::part(button-next) {
+      display: none;
+    }
+  }
+
+  // 🔹 MAIN (Mobile con botones)
+  &__mobile-main {
+    width: 100%;
+    border-radius: 12px;
+    background: $color-white;
+
+    &::part(button-prev),
+    &::part(button-next) {
+      display: block;
+      color: #333;
+      background: $color-white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &__figure {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 420px;
+
+    @media (max-width: $bp-md) {
+      height: 300px;
+    }
+  }
+
+  &__img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+}

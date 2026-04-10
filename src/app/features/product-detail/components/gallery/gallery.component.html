@@ -1,0 +1,75 @@
+<section class="product-gallery" aria-label="Galería de imágenes de {{ productName() }}">
+  @if (hasImages()) {
+    <!-- 🔹 VERSIÓN DESKTOP (CON THUMBNAILS) -->
+    <div class="product-gallery__desktop">
+      <!-- THUMBNAILS -->
+      <swiper-container
+        #thumbsSwiper
+        class="product-gallery__thumbs"
+        space-between="12"
+        slides-per-view="4"
+        free-mode="true"
+        watch-slides-progress="true"
+        breakpoints='{
+          "0": { "direction": "horizontal" },
+          "768": { "direction": "vertical" }
+        }'
+      >
+        @for (image of images(); track image.id) {
+          <swiper-slide>
+            <img
+              class="product-gallery__thumb-img"
+              [ngSrc]="image.thumb"
+              [alt]="image.alt"
+              width="80"
+              height="80"
+            />
+          </swiper-slide>
+        }
+      </swiper-container>
+
+      <!-- MAIN -->
+      <swiper-container #mainSwiper class="product-gallery__main" space-between="16">
+        @for (image of images(); track image.id) {
+          <swiper-slide>
+            <figure class="product-gallery__figure">
+              <img
+                class="product-gallery__img"
+                [ngSrc]="image.src"
+                [alt]="image.alt"
+                width="500"
+                height="500"
+              />
+            </figure>
+          </swiper-slide>
+        }
+      </swiper-container>
+    </div>
+
+    <!-- 🔹 VERSIÓN MOBILE (SIN THUMBNAILS, CON BOTONES) -->
+    <div class="product-gallery__mobile">
+      <swiper-container
+        #mobileSwiper
+        class="product-gallery__mobile-main"
+        navigation="true"
+        space-between="16"
+      >
+        @for (image of images(); track image.id) {
+          <swiper-slide>
+            <figure class="product-gallery__figure">
+              <img
+                class="product-gallery__img"
+                [ngSrc]="image.src"
+                [alt]="image.alt"
+                width="500"
+                height="500"
+              />
+            </figure>
+          </swiper-slide>
+        }
+      </swiper-container>
+    </div>
+  } @else {
+    <p>No hay imágenes disponibles</p>
+  }
+</section>
