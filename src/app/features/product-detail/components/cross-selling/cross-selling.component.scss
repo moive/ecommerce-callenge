@@ -1,0 +1,159 @@
+$color-green-primary: #17a15b;
+$color-green-dark: #008c44;
+$color-white: #ffffff;
+$color-text-title: #354159;
+$color-text-link: #1a8ff1;
+$color-border: #e8e8e8;
+$color-arrow-bg: #ffffff;
+
+$font-base: 'Inter', sans-serif;
+$transition: 0.2s ease;
+
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+
+@mixin from($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+.cross-selling {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  font-family: $font-base;
+  margin-top: 28px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  &__header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: $color-text-title;
+    margin: 0;
+
+    @include from($bp-md) {
+      font-size: 18px;
+    }
+  }
+
+  &__more {
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-text-link;
+    text-decoration: none;
+    transition: opacity $transition;
+
+    &:hover {
+      opacity: 0.75;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-text-link;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+
+  &__arrows {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    &.desktop {
+      @media (max-width: $bp-md) {
+        display: none;
+      }
+    }
+  }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: $color-arrow-bg;
+    border: 1.5px solid $color-border;
+    border-radius: 50%;
+    cursor: pointer;
+    color: $color-text-title;
+    transition:
+      background-color $transition,
+      border-color $transition,
+      color $transition;
+
+    &:hover {
+      background-color: $color-green-primary;
+      border-color: $color-green-primary;
+      color: $color-white;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-green-primary;
+      outline-offset: 2px;
+    }
+
+    &--next {
+      background-color: $color-green-primary;
+      border-color: $color-green-primary;
+      color: $color-white;
+
+      &:hover {
+        background-color: $color-green-dark;
+      }
+    }
+  }
+
+  &__carousel {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 35px;
+    &.desktop {
+      @media (max-width: $bp-md) {
+        display: none;
+      }
+    }
+    &.mobile {
+      @include from($bp-md) {
+        display: none;
+      }
+      app-product-card {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    swiper-container {
+      width: 100%;
+    }
+  }
+
+  &__slide {
+    height: auto;
+
+    app-product-card {
+      height: 100%;
+      display: flex;
+    }
+  }
+}
+
+.cross-selling__mobile::part(button-prev),
+.cross-selling__mobile::part(button-next) {
+  color: $color-text-title;
+  top: 30%;
+}

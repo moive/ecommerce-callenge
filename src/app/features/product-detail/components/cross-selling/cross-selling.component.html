@@ -1,0 +1,85 @@
+<section class="cross-selling" aria-labelledby="cross-selling-title">
+  <div class="cross-selling__header">
+    <div class="cross-selling__header-left">
+      <h2 class="cross-selling__title" id="cross-selling-title">
+        {{ title() }}
+      </h2>
+      <a class="cross-selling__more" href="#" aria-label="Mostrar más productos"> Mostrar más </a>
+    </div>
+    @if (products().length > 0) {
+      <div class="cross-selling__arrows desktop" aria-label="Controles del carrusel">
+        <button
+          class="cross-selling__arrow cross-selling__arrow--prev"
+          type="button"
+          aria-label="Productos anteriores"
+          (click)="prev()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+
+        <button
+          class="cross-selling__arrow cross-selling__arrow--next"
+          type="button"
+          aria-label="Productos siguientes"
+          (click)="next()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      </div>
+    }
+  </div>
+
+  <div class="cross-selling__carousel desktop">
+    <swiper-container #crossSwiperDesktop init="false">
+      @for (product of products(); track product.id) {
+        <swiper-slide>
+          <div>
+            <app-product-card [product]="product" />
+          </div>
+        </swiper-slide>
+      }
+    </swiper-container>
+  </div>
+  <div class="cross-selling__carousel mobile">
+    <swiper-container
+      #crossSwiperMobile
+      class="cross-selling__mobile"
+      navigation="true"
+      space-between="16"
+    >
+      @for (product of products(); track product.id) {
+        <swiper-slide>
+          <div>
+            <app-product-card [product]="product" />
+          </div>
+        </swiper-slide>
+      }
+    </swiper-container>
+  </div>
+</section>

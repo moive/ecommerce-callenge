@@ -15,6 +15,7 @@ import { ProductGalleryComponent } from '../components/gallery/gallery.component
 import { ProductInfoComponent } from '../components/info/info.component';
 import { ProductTabsComponent } from '../components/tabs/tabs.component';
 import { ProductAccordionComponent } from '../components/product-accordion/product-accordion.component';
+import { CrossSellingComponent } from '../components/cross-selling/cross-selling.component';
 
 @Component({
   selector: 'app-product-detail',
@@ -23,6 +24,7 @@ import { ProductAccordionComponent } from '../components/product-accordion/produ
     ProductInfoComponent,
     ProductTabsComponent,
     ProductAccordionComponent,
+    CrossSellingComponent,
   ],
   templateUrl: './product-detail.page.html',
   styleUrl: './product-detail.page.scss',
@@ -37,6 +39,7 @@ export default class ProductDetailPage implements OnInit {
   loading = signal(true);
   private _isWishlisted = signal<boolean>(false);
   isWishlisted = computed(() => this._isWishlisted());
+  relatedProducts = signal<Product[]>([]);
 
   private _selectedTab = signal<ProductTab | undefined>(undefined);
   selectedTab = computed(() => this._selectedTab());
@@ -101,6 +104,8 @@ export default class ProductDetailPage implements OnInit {
       this.product.set(p || null);
       this.loading.set(false);
     });
+
+    this.loadProducts();
   }
 
   addToCart() {
@@ -116,5 +121,11 @@ export default class ProductDetailPage implements OnInit {
   }
   toggleWishlist(): void {
     this._isWishlisted.update((v) => !v);
+  }
+
+  loadProducts(): void {
+    this.productService.getProducts().subscribe((products) => {
+      this.relatedProducts.set(products);
+    });
   }
 }

@@ -44,5 +44,9 @@
     <section class="wrapper-accordion">
       <app-product-accordion [items]="accordionItems" />
     </section>
+
+    <section class="wrapper-cross-selling">
+      <app-cross-selling [products]="relatedProducts()" title="Lo más buscado" />
+    </section>
   </main>
 }
