@@ -1,5 +1,4 @@
 <section class="product-tabs" aria-labelledby="product-tabs-title">
-  <!-- Label -->
   <h3 class="product-tabs__heading" id="product-tabs-title">
     {{ presentacion() }}:
     <span class="product-tabs__heading-value">
@@ -7,7 +6,6 @@
     </span>
   </h3>
 
-  <!-- Opciones -->
   <div class="product-tabs__list" role="radiogroup" aria-label="Seleccionar presentación">
     @for (tab of tabs(); track tab.id) {
       <label
@@ -24,7 +22,6 @@
           (change)="selectTab(tab)"
         />
 
-        <!-- Imagen -->
         <img
           class="product-tabs__img"
           [src]="tab.image"
@@ -34,13 +31,11 @@
           loading="lazy"
         />
 
-        <!-- Info -->
         <div class="product-tabs__info">
           <span class="product-tabs__label">{{ tab.label }}</span>
           <span class="product-tabs__price">{{ tab.priceLabel }}</span>
         </div>
 
-        <!-- Radio visual -->
         <span class="product-tabs__indicator" aria-hidden="true"></span>
       </label>
     }
