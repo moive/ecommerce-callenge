@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { describe, it, beforeEach, expect } from 'vitest';
 import { ProductInfoComponent } from './info.component';
 import { PRODUCTS_MOCK } from '../../../../core/data/product.mock';
 

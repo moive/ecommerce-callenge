@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { describe, it, beforeEach, expect } from 'vitest';
 import { ProductTabsComponent } from './tabs.component';
 import { PRODUCTS_MOCK } from '../../../../core/data/product.mock';
 
@@ -14,7 +14,7 @@ describe('ProductTabsComponent', () => {
 
     fixture = TestBed.createComponent(ProductTabsComponent);
     component = fixture.componentInstance;
-    fixture.componentRef.setInput('product', PRODUCTS_MOCK[0]);
+    fixture.componentRef.setInput('tabs', PRODUCTS_MOCK[0].tabs ?? []);
     await fixture.whenStable();
   });
 

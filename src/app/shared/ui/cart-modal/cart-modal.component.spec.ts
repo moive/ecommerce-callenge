@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { describe, it, beforeEach, expect } from 'vitest';
 import { CartModalComponent } from './cart-modal.component';
 
 describe('CartModalComponent', () => {
@@ -13,6 +13,8 @@ describe('CartModalComponent', () => {
 
     fixture = TestBed.createComponent(CartModalComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('items', []);
+    fixture.componentRef.setInput('isOpen', false);
     await fixture.whenStable();
   });
 

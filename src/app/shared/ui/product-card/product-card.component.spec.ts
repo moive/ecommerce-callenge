@@ -10,8 +10,18 @@ describe('ProductCard', () => {
   const mockProduct: Product = {
     id: '1',
     name: 'Test Product',
+    slug: 'test-product',
+    brand: 'Test Brand',
+    category: 'Test Category',
     image: 'test.jpg',
+    images: ['test.jpg'],
     description: 'Test Description',
+    details: 'Test Details',
+    specifications: [],
+    unitLabel: '1 unit',
+    stock: 10,
+    rating: 4,
+    reviewsCount: 5,
     prices: [{ label: 'Price', value: 'S/ 10.00' }],
   };
 

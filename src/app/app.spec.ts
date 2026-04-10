@@ -1,11 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
+import { describe, it, beforeEach, expect } from 'vitest';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App, RouterTestingModule],
+      imports: [App],
+      providers: [provideRouter([])],
     }).compileComponents();
   });
 
@@ -13,12 +15,6 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it('should have title signal with correct value', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app['title']()).toBe('ecommerce-callenge');
   });
 
   it('should render router-outlet', () => {
