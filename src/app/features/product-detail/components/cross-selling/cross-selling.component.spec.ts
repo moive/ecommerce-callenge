@@ -13,6 +13,7 @@ describe('CrossSellingComponent', () => {
 
     fixture = TestBed.createComponent(CrossSellingComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('products', []);
     await fixture.whenStable();
   });
 

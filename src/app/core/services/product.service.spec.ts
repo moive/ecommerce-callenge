@@ -36,12 +36,13 @@ describe('ProductService', () => {
     expect((result as any).id).toBe('1');
   });
 
-  it('should return undefined for non-existent product id', async () => {
-    const result = await new Promise((resolve) => {
-      service.getProductById('999').subscribe((product) => {
-        resolve(product);
+  it('should throw error for non-existent product id', async () => {
+    const result = await new Promise((resolve, reject) => {
+      service.getProductById('999').subscribe({
+        next: (product) => resolve(product),
+        error: (err) => reject(err),
       });
-    });
-    expect(result).toBeUndefined();
+    }).catch((err) => err);
+    expect(result).toBeInstanceOf(Error);
   });
 });

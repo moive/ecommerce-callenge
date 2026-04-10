@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import ProductListPage from './product-list.page';
-import { ProductService, CartService } from '../../../core/services';
+import { ProductService, CartService, BreadcrumbService, SeoService, AnalyticsService } from '../../../core/services';
+import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { Product } from '../../../core/model';
 import { describe, it, beforeEach, expect, vi } from 'vitest';
@@ -57,11 +58,28 @@ describe('ProductListPage', () => {
       add: vi.fn(),
     };
 
+    const mockBreadcrumbService = {
+      set: vi.fn(),
+      reset: vi.fn(),
+    };
+
+    const mockSeoService = {
+      setPageMeta: vi.fn(),
+    };
+
+    const mockAnalyticsService = {
+      trackViewItemList: vi.fn(),
+    };
+
     await TestBed.configureTestingModule({
       imports: [ProductListPage],
       providers: [
         { provide: ProductService, useValue: mockProductService },
         { provide: CartService, useValue: mockCartService },
+        { provide: BreadcrumbService, useValue: mockBreadcrumbService },
+        { provide: SeoService, useValue: mockSeoService },
+        { provide: AnalyticsService, useValue: mockAnalyticsService },
+        { provide: ActivatedRoute, useValue: {} },
       ],
     }).compileComponents();
 
