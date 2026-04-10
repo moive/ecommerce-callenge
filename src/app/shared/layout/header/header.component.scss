@@ -68,12 +68,12 @@ $bp-xl: 1280px;
     padding: 10px 14px;
 
     @include from($bp-sm) {
-      padding: 10px 20px;
+      padding: 10px 24px;
       gap: 12px;
     }
 
     @include from($bp-lg) {
-      max-width: $bp-xl;
+      max-width: 1366px;
       margin: 0 auto;
       padding: 12px 24px;
       gap: 16px;
@@ -283,7 +283,7 @@ $bp-xl: 1280px;
     }
 
     @include from($bp-lg) {
-      max-width: $bp-xl;
+      max-width: 1366px;
       margin: 0 auto;
       padding: 0 24px;
     }
