@@ -4,7 +4,7 @@ const routes: Routes = [
   {
     path: '',
     title: 'Producto detalle',
-    loadComponent: () => import('./pages/product-detail.page'),
+    loadComponent: () => import('./pages/product-detail.page').then((m) => m.ProductDetailPage),
   },
 ];
 

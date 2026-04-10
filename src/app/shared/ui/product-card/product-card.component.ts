@@ -8,13 +8,12 @@ import {
   signal,
 } from '@angular/core';
 import { Product } from '../../../core/model';
-import { NgOptimizedImage } from '@angular/common';
 import { CartService } from '../../../core/services';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
-  imports: [NgOptimizedImage, RouterModule],
+  imports: [RouterModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,7 +28,7 @@ export class ProductCard {
 
   addToCart(): void {
     this.cartService.add(this.product());
-    this.cartService.openModal();
+    // this.cartService.openModal();
   }
 
   toggleWishlist(): void {

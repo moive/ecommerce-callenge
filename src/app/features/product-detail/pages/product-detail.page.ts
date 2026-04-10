@@ -41,7 +41,7 @@ import { ErrorComponent } from '../../../shared/ui/error/error.component';
   styleUrl: './product-detail.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class ProductDetailPage implements OnInit {
+export class ProductDetailPage implements OnInit {
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
   private cart = inject(CartService);
@@ -120,13 +120,14 @@ export default class ProductDetailPage implements OnInit {
       return;
     }
 
-    this.productService.getProductById(id)
+    this.productService
+      .getProductById(id)
       .pipe(
         catchError((err) => {
           this.error.set(err.message);
           this.loading.set(false);
           return of(null);
-        })
+        }),
       )
       .subscribe((p) => {
         this.product.set(p || null);
