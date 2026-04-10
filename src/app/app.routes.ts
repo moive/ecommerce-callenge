@@ -6,7 +6,7 @@ export const routes: Routes = [
     loadChildren: () => import('./features/product-list/product-list.routes'),
   },
   {
-    path: 'product/:id',
+    path: 'products/:id',
     loadChildren: () => import('./features/product-detail/product-detail.routes'),
   },
   {

@@ -211,28 +211,28 @@ $bp-lg: 1024px;
   background: $color-text-title;
   color: $color-white;
   font-weight: 600;
-  padding: 4px 6px;
+  padding: 5px 6px 5px 3px;
   display: inline-block;
   border-radius: 5px;
   position: relative;
   font-size: 9px;
   &::before {
     position: absolute;
-    left: -9px;
+    left: -10px;
     top: 50%;
     content: '';
     width: 0;
     height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid $color-text-title;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 5px solid $color-text-title;
     transform: translateY(-50%) rotate(-90deg);
   }
 
   &.bgCardExclusive {
     background: $color-discount-bg-2;
     &::before {
-      border-bottom: 10px solid $color-discount-bg-2;
+      border-bottom-color: $color-discount-bg-2;
     }
   }
 }

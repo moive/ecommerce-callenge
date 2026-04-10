@@ -8,8 +8,9 @@ export const PRODUCTS_MOCK: Product[] = [
     brand: 'GSK',
     category: 'FARMACIA',
 
-    image: 'assets/images/promocion.jpg',
+    image: 'assets/images/huggies.png',
     images: ['assets/images/promocion.jpg', 'assets/images/sobre.jpg', 'assets/images/caja.jpg'],
+    promotionImg: 'assets/images/2-mitad-precio.png',
 
     badge: 'Te puede interesar',
     unitLabel: '50 sobres',
@@ -65,7 +66,7 @@ export const PRODUCTS_MOCK: Product[] = [
     brand: 'Genérico',
     category: 'TABLETAS',
 
-    image: 'https://via.placeholder.com/300',
+    image: 'assets/images/huggies.png',
     images: ['https://via.placeholder.com/600?4', 'https://via.placeholder.com/600?5'],
 
     badge: 'Oferta',
@@ -117,7 +118,7 @@ export const PRODUCTS_MOCK: Product[] = [
     brand: 'Advil',
     category: 'CAPSULAS',
 
-    image: 'https://via.placeholder.com/300',
+    image: 'assets/images/huggies.png',
     images: ['https://via.placeholder.com/600?6', 'https://via.placeholder.com/600?7'],
 
     badge: 'Más vendido',
@@ -178,7 +179,7 @@ export const PRODUCTS_MOCK: Product[] = [
     brand: 'Vick',
     category: 'JARABE',
 
-    image: 'https://via.placeholder.com/300',
+    image: 'assets/images/huggies.png',
     images: ['https://via.placeholder.com/600?8', 'https://via.placeholder.com/600?9'],
 
     badge: 'Recomendado',
@@ -230,7 +231,7 @@ export const PRODUCTS_MOCK: Product[] = [
     brand: 'Redoxon',
     category: 'SUPLEMENTOS',
 
-    image: 'https://via.placeholder.com/300',
+    image: 'assets/images/huggies.png',
     images: ['https://via.placeholder.com/600?10', 'https://via.placeholder.com/600?11'],
 
     badge: 'Refuerza defensas',
@@ -282,7 +283,7 @@ export const PRODUCTS_MOCK: Product[] = [
     brand: 'Dettol',
     category: 'HIGIENE',
 
-    image: 'https://via.placeholder.com/300',
+    image: 'assets/images/huggies.png',
     images: ['https://via.placeholder.com/600?12'],
 
     badge: 'Esencial',

@@ -22,6 +22,7 @@ export interface Product {
 
   image: string;
   images: string[];
+  promotionImg?: string;
 
   badge?: string;
   unitLabel: string;

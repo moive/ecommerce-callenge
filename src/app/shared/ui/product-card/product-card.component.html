@@ -1,17 +1,5 @@
 <article class="product-card" [attr.aria-label]="product().name">
-  <!-- Badge superior -->
-  @if (product().badge) {
-    <div class="product-card__top-badge">
-      <span class="product-card__badge-qty"> 80<br /><small>unidades</small> </span>
-      <div class="product-card__badge-info">
-        <span class="product-card__badge-title">{{ product().badge }}</span>
-        <span class="product-card__badge-sub">Cuidado 4 en 1</span>
-      </div>
-    </div>
-  }
-
-  <!-- Imagen -->
-  <a class="product-card__img-wrap" [routerLink]="['/product', product().id]">
+  <a class="product-card__img-wrap" [routerLink]="['/products', product().id]">
     <img
       class="product-card__img"
       [src]="product().image"
@@ -20,23 +8,27 @@
       height="280"
       loading="lazy"
     />
+    @if (product().promotionImg) {
+      <img
+        [src]="product().promotionImg"
+        [alt]="product().name"
+        width="72"
+        class="product-card__promotionImg"
+      />
+    }
   </a>
 
-  <!-- Contenido -->
   <div class="product-card__body">
-    <!-- Unit label -->
     @if (product().unitLabel) {
       <span class="product-card__unit">{{ product().unitLabel }}</span>
     }
 
-    <!-- Nombre -->
     <h3 class="product-card__name">
       <a class="product-card__name-link" [routerLink]="['/product', product().id]">
         {{ product().name }}
       </a>
     </h3>
 
-    <!-- Tags -->
     <div class="product-card__tags">
       @if (product().tags?.includes('recomendado')) {
         <span class="product-card__tag product-card__tag--recommended">
@@ -55,46 +47,37 @@
           Te puede interesar
         </span>
       }
+      <span class="product-card__tag product-card__tag--guaranteed">
+        <img src="assets/images/guaranteed.svg" alt="logo-gris-inkafarma" width="16" />
+        Te puede interesar
+      </span>
       @if (product().brand) {
         <span class="product-card__tag product-card__tag--brand">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
-          </svg>
-          {{ product().brand }}
+          <img src="assets/images/logo-gris-inkafarma.svg" alt="logo-gris-inkafarma" width="16" />
+          Inkafarma
+          <!-- {{ product().brand }} -->
         </span>
       }
     </div>
 
-    <!-- Precios -->
     <div class="product-card__prices">
-      @for (price of product().prices; track price.label) {
+      @for (price of product().prices; track price.label; let i = $index) {
         <div class="product-card__price-row" [class.product-card__price-row--bold]="$last">
           <span class="product-card__price-value">{{ price.value }}</span>
+
           @if (price.discount) {
             <div class="product-card__price-right">
-              @if (price.badges && price.badges.length > 0) {
-                @for (badge of price.badges; track badge.alt) {
-                  <img
-                    class="product-card__badge-img"
-                    [src]="badge.icon"
-                    [alt]="badge.alt"
-                    width="24"
-                    height="16"
-                    loading="lazy"
-                  />
-                }
+              @if (i == 2) {
+                <img
+                  class="CreditCard"
+                  src="assets/images/CreditCard.svg"
+                  alt="CreditCard"
+                  width="45"
+                />
               }
-              <span class="product-card__discount">{{ price.discount }}</span>
+              <span class="discount-badge" [class.bgCardExclusive]="i === 2">{{
+                price.discount
+              }}</span>
             </div>
           }
         </div>
