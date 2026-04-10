@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
-import { ProductService, CartService } from '../../../core/services';
+import { ProductService, CartService, AnalyticsService } from '../../../core/services';
 import { AccordionItem, GalleryImage, Product, ProductTab } from '../../../core/model';
 import { ProductGalleryComponent } from '../components/gallery/gallery.component';
 import { ProductInfoComponent } from '../components/info/info.component';
@@ -59,6 +59,7 @@ export default class ProductDetailPage implements OnInit {
   });
 
   readonly hasProduct = computed(() => !!this.product());
+  analytics = inject(AnalyticsService);
 
   readonly tabs = computed<ProductTab[]>(() => {
     const p = this.product();
@@ -103,6 +104,9 @@ export default class ProductDetailPage implements OnInit {
     this.productService.getProductById(id).subscribe((p) => {
       this.product.set(p || null);
       this.loading.set(false);
+      if (p) {
+        this.analytics.trackViewItem(p);
+      }
     });
 
     this.loadProducts();
